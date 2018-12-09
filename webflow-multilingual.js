@@ -817,8 +817,17 @@
   let documentLang;
 
   function getLangParam() {
-    const arr = /lang=([a-z]{2})/g.exec(location.search);
-    return arr ? arr[1] : null;
+    const arrPath = /\/([\w]{2})\//g.exec(location.pathname);
+    const arrParam = /lang=([a-z]{2})/g.exec(location.search);
+    console.log(arrPath);
+    console.log(arrParam);
+    if (arrPath) {
+      return arrPath[1];
+    } else if (arrParam) {
+      return arrParam[1];
+    } else {
+      return null;
+    }
   }
 
   function getLangFromStorage() {
