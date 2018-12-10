@@ -7,11 +7,20 @@ const addUrls = (function() {
   if (dropdown !== null) {
     const links = dropdown.querySelectorAll(".dropdown-link");
     const origin = window.location.origin; // https://www.example.com
-    const path = window.location.pathname; // /post/blogpost-name-lorem
+    let path = window.location.pathname; // /post/blogpost-name-lorem
 
     // go through every link and get the language code from the language dropdown
     Array.prototype.forEach.call(links, function(el, i) {
-      const attr = el.getAttribute("href");
+      let attr = el.getAttribute("href");
+      if (attr === "/") {
+        attr = "";
+      }
+      const regexLang = /([\w]{2})\//g;
+      const arrPath = regexLang.exec(path);
+      if (arrPath) {
+        path = path.replace(regexLang, "");
+      }
+
       const fullUrl = origin + attr + path;
 
       // Check if the requested site exists in the language and set it to e.g  /en/delivery otherwise do nothing and redirect to /en
@@ -20,7 +29,9 @@ const addUrls = (function() {
       request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
           // Site is translated, to update the links
-          const newPath = attr + path; // make a relative path out of it
+
+          let newPath = attr + path; // make a relative path out of it
+
           el.setAttribute("href", newPath);
         } else {
           // do nothing because the site is not there in the language

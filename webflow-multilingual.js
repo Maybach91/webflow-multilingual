@@ -809,8 +809,6 @@
   function getLangParam() {
     const arrPath = /\/([\w]{2})\//g.exec(location.pathname);
     const arrParam = /lang=([a-z]{2})/g.exec(location.search);
-    console.log(arrPath);
-    console.log(arrParam);
     if (arrPath) {
       return arrPath[1];
     } else if (arrParam) {
@@ -829,7 +827,6 @@
     if (isStorageEnabled) {
       localStorage.setItem("lang", userLang);
     }
-    console.log("[wm] setLang:", lang, userLang);
     applyLang();
   }
 
