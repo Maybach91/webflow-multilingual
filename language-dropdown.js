@@ -1,7 +1,5 @@
 const addUrls = (function() {
-  const dropdown = window.document.querySelectorAll(
-    ".navigation-right-content .dropdown-list"
-  )[0];
+  const dropdown = window.document.querySelectorAll(".language-dropdown")[0];
 
   // run only, when there is the language dropdown (not on 404 and password page)
   if (dropdown !== null) {

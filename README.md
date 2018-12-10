@@ -53,3 +53,29 @@ https://your-awesome-site.site?lang=en
 ```
 <button data-wm-switch>Switch</button>
 ```
+
+### Language Dropdown
+
+Just add a normal Dropdown in Webflow and set the href to the language. Add the class `language-dropdown` to the dropdown.
+
+It should look like this:
+
+```
+<div class="language-dropdown">
+  <nav class="dropdown-list w-dropdown-list">
+    <a href="/de" class="dropdown-link dropdown-link-german w-dropdown-link">German</a>
+    <a href="/fr" class="dropdown-link dropdown-link-francais w-dropdown-link">Français</a>
+  </nav>
+</div>
+
+```
+
+The script checks if the current site is translated in the requested language. So if you are on www.example.com/delivery the scripts checks if www.example.com/fr/delivery doesn’t return a 404 - not found status. And sets the link.
+
+ToDo: If the URL Slug is also translated this solution does not work.
+
+#### URL Rewriting for Collection Item Pages (e.g. Blog Posts)
+
+If the site IS a Collection Item / Collection List site (e.g. Blog Category or Blog Post) it checks the slug (category or post in this case) and add the param `?lang=fr` to the url instead of rewriting the url to the folder structure.
+
+Currently it just checks `category` and `post` within the url.
