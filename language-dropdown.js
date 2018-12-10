@@ -13,7 +13,7 @@ const addUrls = (function() {
       if (attr === "/") {
         attr = "";
       }
-      const regexLang = /([\w]{2})\//g;
+      const regexLang = /\/([\w]{2})\//g;
       const arrPath = regexLang.exec(path);
       if (arrPath) {
         path = path.replace(regexLang, "");
