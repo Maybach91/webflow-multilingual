@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
   </head>
   <body>
     <h3>class feature</h3>
     <p class="wm-ko">한국어</p>
     <p class="wm-en">English</p>
-    <hr>
+    <hr />
     <h3>text content feature</h3>
     <p>[[ko]]한국어 [[en]]English</p>
-    <p>[[ko]]한국어 <br> 한국어[[en]]English <br> English</p>
-    <p>[[ko]]한국어
-      한국어
-      [[en]]English
-    English</p>
+    <p>
+      [[ko]]한국어 <br />
+      한국어[[en]]English <br />
+      English
+    </p>
+    <p>[[ko]]한국어 한국어 [[en]]English English</p>
     <button data-wm-sel="ko">한국어</button>
     <button data-wm-sel="en">English</button>
     <button data-wm-switch>Switch</button>
+    <h3>dropdown</h3>
+
+    <div class="language-dropdown">
+      <nav class="dropdown-list w-dropdown-list">
+        <a
+          href="/de"
+          class="dropdown-link dropdown-link-german w-dropdown-link "
+          >German</a
+        >
+        <a
+          href="/fr"
+          class="dropdown-link dropdown-link-francais w-dropdown-link  "
+          >Français</a
+        >
+        <a
+          href="/en"
+          class="dropdown-link dropdown-link-francais w-dropdown-link"
+          >English</a
+        >
+      </nav>
+    </div>
+    <select name="" id="">
+      <option value=""></option>
+      <option class="wm-en wm-fr" value="">German</option>
+      <option class="wm-de wm-fr" data-wm-sel="wm-fr" value="">English</option>
+      <option clsas="wm-de wm-en" value="">Francais</option>
+    </select>
     <script src="webflow-multilingual.js"></script>
   </body>
-
 </html>
