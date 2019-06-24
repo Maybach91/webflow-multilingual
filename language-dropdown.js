@@ -7,6 +7,7 @@ const addUrls = (function() {
     const origin = window.location.origin; // https://www.example.com
     let path = window.location.pathname; // /post/blogpost-name-lorem
     let fullUrl;
+    const defaultLanguage = "en"; // default language does not have lang code in url (e.g. example.com is default english) & will not be added for redirection
 
     // If Homepage dont do anything otherwise change links
     if (path === "/" || path === "/de" || path === "/fr") {
@@ -16,7 +17,7 @@ const addUrls = (function() {
       Array.prototype.forEach.call(links, function(el, i) {
         let attr = el.getAttribute("href");
 
-        if (attr === "/") {
+        if (attr === "/" || attr === "/" + defaultLanguage) {
           attr = "";
         }
 
@@ -25,6 +26,7 @@ const addUrls = (function() {
         if (arrPath) {
           path = path.replace(regexLang, "/");
         }
+
         const fullUrl = origin + attr + path; // e.g. https://www.example.com/de/example-site
         // If Blog / or Blog Category, then add get param to set the language (because all translated content is on one page - because of collections)
         const arrParam =
