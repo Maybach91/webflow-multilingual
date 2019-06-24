@@ -1,3 +1,13 @@
+(function(l, i, v, e) {
+  v = l.createElement(i);
+  v.async = 1;
+  v.src =
+    "//" +
+    (location.host || "localhost").split(":")[0] +
+    ":35729/livereload.js?snipver=1";
+  e = l.getElementsByTagName(i)[0];
+  e.parentNode.insertBefore(v, e);
+})(document, "script");
 (function(global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
     ? factory()
@@ -807,15 +817,8 @@
   let documentLang;
 
   function getLangParam() {
-    const arrPath = /\/([\w]{2})\//g.exec(location.pathname);
-    const arrParam = /lang=([a-z]{2})/g.exec(location.search);
-    if (arrPath) {
-      return arrPath[1];
-    } else if (arrParam) {
-      return arrParam[1];
-    } else {
-      return null;
-    }
+    const arr = /lang=([a-z]{2})/g.exec(location.search);
+    return arr ? arr[1] : null;
   }
 
   function getLangFromStorage() {
@@ -827,6 +830,7 @@
     if (isStorageEnabled) {
       localStorage.setItem("lang", userLang);
     }
+    console.log("[wm] setLang:", lang, userLang);
     applyLang();
   }
 
